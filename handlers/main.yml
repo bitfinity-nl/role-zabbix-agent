@@ -1,0 +1,20 @@
+---
+# Title: role-zabbix-agent
+#
+# Author: bitfinity-nl
+# File: handlers/main.yml
+#
+# Description:
+#   Playbook for deploying Zabbix Agents
+
+- name: "restart_zabbix_agent"
+  systemd:
+    name: zabbix-agent
+    state: restarted
+    enabled: yes
+    masked: no
+
+- name: "restart_win_zbx_agent"
+  win_service:
+    name: Zabbix Agent
+    state: restarted
