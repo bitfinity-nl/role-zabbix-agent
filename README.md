@@ -11,8 +11,8 @@ Example(s)
   become: yes
 
   vars:
-    # -- roles/role-zabbix-5 --
-    zbx_type : 'server'  # Set zabbix type to "server".
+    # -- roles/role-zabbix-agent --
+    zbx_agt_HostMetadata : 'Server'
 
   roles:
     - role-zabbix-agent
