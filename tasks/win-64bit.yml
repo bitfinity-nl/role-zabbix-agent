@@ -39,7 +39,7 @@
 
 - name: "Transfer and configure template to client"
   win_template:
-    src: templates/agent/zabbix_agentd.win.conf.j2
+    src: zabbix_agentd.win.conf.j2
     dest: C:\Zabbix\conf\zabbix_agentd.conf
     force: yes
   notify:
