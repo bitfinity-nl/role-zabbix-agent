@@ -1,0 +1,61 @@
+---
+# Title: role-zabbix-agent
+#
+# Author: bitfinity-nl
+# File: defaults/main.yml
+#
+# Description:
+#   Playbook for deploying Zabbix 5.0LTS 
+
+
+# -- Zabbix server - General settings -- 
+#
+# Variable(s):
+#   zbx_install_zabbix_server : 'yes'                                                                                                       # Install Zabbix server (default=no).
+#   zbx_repository            : 'https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-3+bionic_all.deb'  # Set Url to Zabbix repository 
+#   zbx_timezone              : 'Europe/Amsterdam'                                                                                          # Set Timezone.
+#   zbx_servername            : '{{ ansible_hostname }}'                                                                                    # Set servername of the installation.
+#   zbx_server                : '{{ def_zbx_server }}'                                                                                      # Set IP or hostname of the Zabbix server.
+#   zbx_active_server         : '{{ def_zbx_active_server }}'                                                                               # Set IP or hostname of the Zabbix Active server.
+#
+zbx_repository            : 'https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb'
+zbx_timezone              : 'Europe/Amsterdam' 
+zbx_servername            : '{{ ansible_hostname }}'
+zbx_server                : '{{ def_zbx_server }}'
+zbx_active_server         : '{{ def_zbx_active_server }}'
+
+# -- Zabbix Agent Ubuntu - zabbix_agent.conf.j2 --
+#
+# Variable(s):
+#   zbx_agt_LogFileSize            : '5'                       # Maximum size of log file in MB.
+#   zbx_agt_Server                 : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers.
+#   zbx_agt_ServerActive           : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers. 
+#   zbx_agt_Hostname               : '{{ ansible_hostname }}'  # Set hostname.
+#   zbx_agt_EnableRemoteCommands   : '1'                       # Used for sending remote commands.
+#   zbx_agt_LogRemoteCommands      : '0'                       # Used for loging remote commands.
+#   zbx_agt_HostMetadata           : 'Server'                  # Used for autoregistration. 
+#
+zbx_agt_LogFileSize           : '5'
+zbx_agt_Server                : '{{ zbx_server }}'
+zbx_agt_ServerActive          : '{{ zbx_active_server }}'
+zbx_agt_Hostname              : '{{ ansible_hostname }}'
+zbx_agt_EnableRemoteCommands  : '1'
+zbx_agt_LogRemoteCommands     : '0'
+zbx_agt_HostMetadata          : 'Server'
+
+
+# -- Zabbix Agent Windows - specific settings (Zip version)--
+# 
+# Variable(s):
+#   zbx_pkg_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
+#   zbx_agt_win_src            : 'https://www.zabbix.com/downloads/4.0.14/zabbix_agents-4.0.14-win-amd64-openssl.zip'
+#   zbx_agt_checksum           : '552f5146f12aed4217f9d0408f29e4d6'
+#   zbx_agt_checksum_algorithm : 'md5'
+#
+# Comment:
+#   See Zabbix documentation for more specific arguments.
+#
+zbx_pkg_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
+zbx_agt_win_src            : 'https://cdn.zabbix.com/zabbix/binaries/stable/5.0/5.0.7/zabbix_agent-5.0.7-windows-amd64-openssl.zip'
+zbx_agt_checksum           : 'a30950efdffa8b11484f559251efc7d1'
+zbx_agt_checksum_algorithm : 'md5'
