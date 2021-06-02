@@ -42,11 +42,11 @@
     rule: allow
     port: "10050"
     proto: tcp
-    from_ip: "{{ zbx_agt_Server }}"
+    from_ip: "{{ result_zbx_ip_passive.stdout }}"
 
 - name: "Allow traffic from Zabbix agent to Zabbix server (Active) on port 10051/tcp"
   ufw:
     rule: allow
     port: "10051"
     proto: tcp
-    to_ip: "{{ zbx_agt_ServerActive }}"
+    to_ip: "{{ result_zbx_ip_active.stdout }}"
