@@ -50,3 +50,9 @@
     port: "10051"
     proto: tcp
     to_ip: "{{ result_zbx_ip_active.stdout }}"
+
+- name: "Disable i386 repositories"
+  ansible.builtin.replace:
+    path: /etc/apt/sources.list.d/zabbix.list
+    regexp: deb http://repo.zabbix.com/zabbix/5.0/ubuntu focal main
+    replace: deb [arch=amd64]  http://repo.zabbix.com/zabbix/5.0/ubuntu focal main
