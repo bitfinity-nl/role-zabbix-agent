@@ -9,6 +9,22 @@
 #   Playbook for deploying Zabbix 5.0LTS 
 #
 
+- name: "Check Zabbix IP (Active)"
+  shell: ping -c 2 {{ zbx_server }} | grep "icmp_seq=2" | cut -d " " -f 5 | tr -d "(" | tr -d "):"
+  register: result_zbx_ip_passive
+  
+- name: "Check Zabbix IP (Active)"
+  shell: ping -c 2 {{ zbx_active_server }} | grep "icmp_seq=2" | cut -d " " -f 5 | tr -d "(" | tr -d "):"
+  register: result_zbx_ip_active
+
+- name: "Display Zabbix IP (Passive)"
+  ansible.builtin.debug:
+    var: result_zbx_ip_passive.stdout
+
+- name: "Display Zabbix IP (Active)"
+  ansible.builtin.debug:
+    var: result_zbx_ip_active.stdout
+    
 - name: "Zabbix Agent (Ubuntu)"
   import_tasks: ubt-2004-amd64.yml
   when:
