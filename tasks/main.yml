@@ -1,0 +1,24 @@
+
+---
+# Title: role-zabbix-5-lts
+#
+# Author: bitfinity-nl
+# File: tasks/main.yml
+#
+# Description:
+#   Playbook for deploying Zabbix 5.0LTS 
+#
+
+- name: "Zabbix Agent (Ubuntu)"
+  import_tasks: ubt-2004-amd64.yml
+  when:
+    - ansible_distribution_version == "20.04"
+    - ansible_architecture == "x86_64"
+    - zbx_type == 'agent'
+
+- name: "Zabbix Agent (Windows 64bit)"
+  import_tasks:win-64bit.yml
+  when:
+    - ansible_os_family == "Windows"
+    - ansible_architecture == "64-bit"
+    - zbx_type == 'agent'
