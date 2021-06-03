@@ -42,14 +42,14 @@
     rule: allow
     port: "10050"
     proto: tcp
-    from_ip: "{{ result_zbx_ip_passive.stdout }}"
+    from_ip: "{{ zbx_server }}"
 
 - name: "Allow traffic from Zabbix agent to Zabbix server (Active) on port 10051/tcp"
   ufw:
     rule: allow
     port: "10051"
     proto: tcp
-    to_ip: "{{ result_zbx_ip_active.stdout }}"
+    to_ip: "{{ zbx_server }}"
 
 - name: "Disable i386 repositories"
   ansible.builtin.replace:
