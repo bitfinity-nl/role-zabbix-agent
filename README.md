@@ -12,7 +12,9 @@ Example(s)
 
   vars:
     # -- roles/role-zabbix-agent --
-    zbx_agt_HostMetadata : 'Server'
+    zbx_agt_HostMetadata : 'Server,Ubuntu'
+    zbx_server           : '10.1.30.31'
+    zbx_active_server    : '{{ def_zbx_active_server }}'
 
   roles:
     - role-zabbix-agent
