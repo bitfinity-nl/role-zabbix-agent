@@ -17,21 +17,21 @@
 - name: "Uninstall Zabbix agent"
   win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
   when:
-    - zbx_result.exists == True and zbx_state == reinstall
+    - zbx_result.exists == True and zbx_state == 'reinstall'
 
 - name: "Create local Ansible repository"
   win_file:
     path: "{{ zbx_pkg_local_repository }}"
     state: absent
   when:
-    - zbx_result.exists == True and zbx_state == reinstall    
+    - zbx_result.exists == True and zbx_state == 'reinstall'
     
 - name: "Create local Ansible repository"
   win_file:
     path: "{{ zbx_pkg_local_repository }}"
     state: directory
   when:
-  - zbx_result.exists == False or zbx_state == reinstall
+  - zbx_result.exists == False or zbx_state == 'reinstall'
 
 - name: "Download Zabbix Agent (Zip version)"
   win_get_url:
@@ -47,7 +47,7 @@
     src: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
     dest: C:\Zabbix\
   when:
-  - zbx_result.exists == False or zbx_state == reinstall
+  - zbx_result.exists == False or zbx_state == 'reinstall'
 
 - name: "Transfer and configure template to client"
   win_template:
@@ -60,7 +60,7 @@
 - name: "Install zabbix agent as a service"
   win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --install
   when: 
-  - zbx_result.exists == False or zbx_state == reinstall
+  - zbx_result.exists == False or zbx_state == 'reinstall'
 
 - name: "Start service Zabbix agent"
   win_service:
