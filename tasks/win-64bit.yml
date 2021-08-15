@@ -15,9 +15,9 @@
   ignore_errors: True
 
 - name: "Uninstall Zabbix agent"
-  win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --install
+  win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
   when:
-  - zbx_result.exists == False
+  - zbx_result.exists == True
   - zbx_state == reinstall
 
 - name: "Create local Ansible repository"
