@@ -18,7 +18,7 @@
   win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --install
   when:
   - zbx_result.exists == False
-  - zbx_state == reinstall 
+  - zbx_state == reinstall
 
 - name: "Create local Ansible repository"
   win_file:
