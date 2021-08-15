@@ -14,7 +14,7 @@
   register: zbx_result
   ignore_errors: True
 
-- name: "Start service Zabbix agent"
+- name: "Stop service Zabbix agent"
   win_service:
     name: Zabbix Agent
     start_mode: disabled
