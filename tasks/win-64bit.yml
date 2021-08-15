@@ -14,6 +14,14 @@
   register: zbx_result
   ignore_errors: True
 
+- name: "Start service Zabbix agent"
+  win_service:
+    name: Zabbix Agent
+    start_mode: disabled
+    state: stopped
+  when:
+    - zbx_result.exists == True and zbx_state == 'reinstall'
+    
 - name: "Uninstall Zabbix agent"
   win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
   when:
