@@ -23,7 +23,7 @@
     - zbx_result.exists == True and zbx_state == 'reinstall'
     
 - name: "Uninstall Zabbix agent"
-  win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
+  win_command: "C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall"
   when:
     - zbx_result.exists == True and zbx_state == 'reinstall'
 
