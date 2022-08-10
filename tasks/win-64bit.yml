@@ -48,7 +48,7 @@
     checksum: "{{ zbx_agt_checksum }}"
     checksum_algorithm: "{{ zbx_agt_checksum_algorithm }}"
   when:
-  - zbx_result.exists == False or zbx_state == reinstall
+  - zbx_result.exists == False or zbx_state == 'install'
 
 - name: "Unpack {{ zbx_pkg_local_repository }}\\zabbix-agent.zip to "
   win_unzip:
