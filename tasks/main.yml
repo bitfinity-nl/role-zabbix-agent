@@ -1,13 +1,12 @@
 
 ---
-# Title: role-zabbix-5-lts
+# Title: role-zabbix-agent
 #
 # Author: bitfinity-nl
 # File: tasks/main.yml
 #
 # Description:
-#   Playbook for deploying Zabbix 5.0LTS 
-#
+#   Playbook for deploying Zabbix Agent
 
 - name: "Zabbix Agent (Ubuntu 18.04LTS)"
   import_tasks: ubt-1804-amd64.yml
