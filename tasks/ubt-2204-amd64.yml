@@ -44,19 +44,9 @@
     rule: allow
     port: "10050"
     proto: tcp
-    # from_ip: "{{ zbx_server }}"
 
 - name: "Allow traffic from Zabbix agent to Zabbix server (Active) on port 10051/tcp"
   ufw:
     rule: allow
     port: "10051"
     proto: tcp
-    # to_ip: "{{ zbx_server }}"
-
-#- name: "Disable i386 repositories"
-#  ansible.builtin.replace:
-#    path: /etc/apt/sources.list.d/zabbix.list
-#    regexp: deb http://repo.zabbix.com/zabbix/5.0/ubuntu focal main
-#    replace: deb [arch=amd64]  http://repo.zabbix.com/zabbix/5.0/ubuntu focal main
-    
-    
