@@ -34,7 +34,7 @@
     - restart_zabbix_agent
 
 - name: "enable zabbix agent on startup"
-  ansible.builtin.systemd_service:
+  systemd:
     name: zabbix-agent
     state: started
     enabled: yes
