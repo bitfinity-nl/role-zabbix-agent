@@ -21,7 +21,7 @@
     - ansible_architecture == "x86_64"
 
 - name: "Zabbix Agent 6.0 (Ubuntu 22.04LTS)"
-  import_tasks: ubt-2204-amd64.yml
+  import_tasks: tasks/6/ubt-2204-amd64.yml
   when:
     - ansible_distribution_version == "22.04"
     - ansible_architecture == "x86_64"
