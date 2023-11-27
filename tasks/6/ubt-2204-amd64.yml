@@ -42,8 +42,8 @@
 - name: "Allow traffic from Zabbix server to Zabbix Agent (Active on port 10010/tcp / Passive on port 10050/tcp)"
   community.general.ufw:
     rule: allow
-    port: "10050"
-    proto: tcp
+    port: "{{ item.port }}"
+    proto: "{{ item.tcp }}"
   loop:
     - { port: '10050', proto: 'tcp', desc: 'Allow traffic from Zabbix server to Zabbix Agent (Passive) on port 10050/tcp' }
     - { port: '10051', proto: 'tcp', desc: 'Allow traffic from Zabbix agent to Zabbix server (Active) on port 10051/tcp' }
