@@ -22,8 +22,8 @@ zbx_state                 : 'install'
 zbx_repository            : 'https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb'
 zbx_timezone              : 'Europe/Amsterdam' 
 zbx_servername            : '{{ ansible_hostname }}'
-zbx_server                : '{{ def_zbx_server }}'
-zbx_active_server         : '{{ def_zbx_active_server }}'
+zbx_server                : '{{ global_zabbix_server }}'
+zbx_active_server         : '{{ global_zabbix_active_server }}'
 
 # -- Zabbix Agent Ubuntu - zabbix_agent.conf.j2 --
 #
