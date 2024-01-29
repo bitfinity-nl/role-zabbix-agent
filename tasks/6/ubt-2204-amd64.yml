@@ -39,7 +39,7 @@
     state: started
     enabled: yes
 
-- name: "Allow traffic from Zabbix server to Zabbix Agent (Active on port 10010/tcp / Passive on port 10050/tcp)"
+- name: "Allow traffic from Zabbix server to Zabbix Agent (Active on port 10051/tcp / Passive on port 10050/tcp)"
   community.general.ufw:
     rule: allow
     port: "{{ item.port }}"
