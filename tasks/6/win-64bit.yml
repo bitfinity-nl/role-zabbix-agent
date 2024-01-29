@@ -6,7 +6,14 @@
 #
 # Description:
 #   Playbook for deploying Zabbix Agent
-#
+
+# -- Set facts for Zabbix Agent --
+- name: "Set URL for downloading Zabbix Agent" 
+  ansible.builtin.set_fact:
+    zabbix_agent_src : '{{ zabbix_agent_lts_ver_6_win_src }}'
+
+# -- 
+
 - name: "Check if Zabbix service is installed"
   win_service:
     name: Zabbix Agent
@@ -42,7 +49,7 @@
 
 - name: "Download Zabbix Agent (Zip version)"
   win_get_url:
-    url: "{{ zbx_agt_win_src }}"
+    url: "{{ zabbix_agent_src }}"
     dest: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
     checksum: "{{ zbx_agt_checksum }}"
     checksum_algorithm: "{{ zbx_agt_checksum_algorithm }}"
