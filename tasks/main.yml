@@ -36,9 +36,9 @@
     - ansible_architecture == "x86_64"
     - zabbix_agent_version == "6"
     
-- name: "Zabbix Agent 6.xx LTS (Windows 64bit)"
-  import_tasks: tasks/6/win-64bit.yml
+- name: "Zabbix Agent {{ zbx_version }} (Windows 64bit)"
+  import_tasks: tasks/{{ zbx_version }}/win-64bit.yml
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture == "64-bit"
-    - zabbix_agent_version == "6"
+    - zbx_version == "6"
