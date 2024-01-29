@@ -39,5 +39,5 @@
   include_tasks: tasks/6/win-64bit.yml
   when:
     - ansible_os_family == "Windows"
-    - ansible_architecture == "64-bit"
+    - ansible_architecture2 == "x86_64"
 
