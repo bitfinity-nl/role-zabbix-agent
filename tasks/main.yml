@@ -31,3 +31,11 @@
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture == "64-bit"
+    - zabbix_version == "5"
+
+- name: "Zabbix Agent (Windows 64bit)"
+  import_tasks: win-64bit.yml
+  when:
+    - ansible_os_family == "Windows"
+    - ansible_architecture == "64-bit"
+    - zabbix_agent_version == "6"
