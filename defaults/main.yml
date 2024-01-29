@@ -7,6 +7,8 @@
 # Description:
 #   Playbook for deploying Zabbix 5.0LTS 
 
+zabbix_agent_version                 : '6'
+
 # -- Zabbix Agent source(s) --
 zabbix_agent_lts_ver_6_win_src       : 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.25/zabbix_agent-6.0.25-windows-amd64-openssl.zip'
 zabbix_agent_lts_ver_6_win_checksum  : 'd38b96602da5fd4ec4d35700ad96fd4b'
