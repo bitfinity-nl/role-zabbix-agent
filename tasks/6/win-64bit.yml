@@ -1,0 +1,101 @@
+---
+# Title: role-zabbix-agent
+#
+# Author: bitfinity-nl
+# File: tasks/6/win-64bit.yml
+#
+# Description:
+#   Playbook for deploying Zabbix Agent
+#
+- name: "Check if Zabbix service is installed"
+  win_service:
+    name: Zabbix Agent
+  register: zbx_result
+  ignore_errors: True
+
+- name: "Stop service Zabbix agent"
+  win_service:
+    name: Zabbix Agent
+    start_mode: disabled
+    state: stopped
+  when:
+    - zbx_result.exists == True and zbx_state == 'install'
+    
+- name: "Uninstall Zabbix agent"
+  win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
+  when:
+    - zbx_result.exists == True and zbx_state == 'install'
+
+- name: "Create local Ansible repository"
+  win_file:
+    path: "{{ zbx_pkg_local_repository }}"
+    state: absent
+  when:
+    - zbx_result.exists == True and zbx_state == 'install'
+    
+- name: "Create local Ansible repository"
+  win_file:
+    path: "{{ zbx_pkg_local_repository }}"
+    state: directory
+  when:
+  - zbx_result.exists == False or zbx_state == 'install'
+
+- name: "Download Zabbix Agent (Zip version)"
+  win_get_url:
+    url: "{{ zbx_agt_win_src }}"
+    dest: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
+    checksum: "{{ zbx_agt_checksum }}"
+    checksum_algorithm: "{{ zbx_agt_checksum_algorithm }}"
+  when:
+  - zbx_result.exists == False or zbx_state == 'install'
+
+- name: "Unpack {{ zbx_pkg_local_repository }}\\zabbix-agent.zip to "
+  win_unzip:
+    src: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
+    dest: C:\Zabbix\
+  when:
+  - zbx_result.exists == False or zbx_state == 'install'
+
+- name: "Transfer and configure template to client"
+  win_template:
+    src: zabbix_agentd.win.conf.j2
+    dest: C:\Zabbix\conf\zabbix_agentd.conf
+    force: yes
+  notify:
+    - restart_win_zbx_agent
+
+- name: "Install zabbix agent as a service"
+  win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --install
+  when: 
+  - zbx_result.exists == False or zbx_state == 'install'
+
+- name: "Start service Zabbix agent"
+  win_service:
+    name: Zabbix Agent
+    start_mode: auto
+    state: started
+
+- name: "Cleanup local repository"
+  win_file:
+    path: "{{ zbx_pkg_local_repository }}"
+    state: absent
+    
+- name: "Firewall rule to allow Zabbix Passive (10050) on TCP port 10050"
+  win_firewall_rule:
+    name: Zabbix Passive (10050)
+    localport: 10050
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+
+- name: "Firewall rule to allow ICMPv4"
+  win_firewall_rule:
+    name: Firewall rule to allow ICMPv4
+    localport: any
+    action: allow
+    direction: in
+    protocol: ICMPv4
+    profiles: Domain
+    state: present
+    enabled: yes
