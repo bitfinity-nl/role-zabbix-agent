@@ -10,7 +10,9 @@
 # -- Set facts for Zabbix Agent --
 - name: "Set URL for downloading Zabbix Agent" 
   ansible.builtin.set_fact:
-    zabbix_agent_src : '{{ zabbix_agent_lts_ver_6_win_src }}'
+    zabbix_agent_src       : '{{ zabbix_agent_lts_ver_6_win_src }}'
+    zabbix_agent_checksum  : '{{ zabbix_agent_lts_ver_6_win_checksum }}'
+    zabbix_agent_algorithm : '{{ zabbix_agent_lts_ver_6_win_algorithm }}'
 
 # -- 
 
@@ -51,8 +53,8 @@
   win_get_url:
     url: "{{ zabbix_agent_src }}"
     dest: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
-    checksum: "{{ zbx_agt_checksum }}"
-    checksum_algorithm: "{{ zbx_agt_checksum_algorithm }}"
+    checksum: "{{ zabbix_agent_checksum }}"
+    checksum_algorithm: "{{ zabbix_agent_algorithm }}"
   when:
   - zbx_result.exists == False or zbx_state == 'install'
 
