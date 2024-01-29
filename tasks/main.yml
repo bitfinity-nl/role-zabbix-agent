@@ -36,7 +36,7 @@
     - ansible_architecture == "x86_64"
     
 - name: "Zabbix Agent 6 (Windows 64bit)"
-  include_tasks: tasks/6/win-64bit.yml
+  import_tasks: tasks/6/win-64bit.yml
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture == "64-bit"
