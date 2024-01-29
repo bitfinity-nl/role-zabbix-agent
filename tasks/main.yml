@@ -30,7 +30,7 @@
 # -- Zabbix Agent 6.xx LTS --
 
 - name: "Zabbix Agent 6.xx LTS (Ubuntu 22.04LTS)"
-  import_tasks: tasks/6/ubt-2204-amd64.yml
+  include_tasks: tasks/6/ubt-2204-amd64.yml
   when:
     - ansible_distribution_version == "22.04"
     - ansible_architecture == "x86_64"
