@@ -25,7 +25,7 @@
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture == "64-bit"
-    - zabbix_version == "5"
+
 
 # -- Zabbix Agent 6.xx LTS --
 
@@ -34,11 +34,10 @@
   when:
     - ansible_distribution_version == "22.04"
     - ansible_architecture == "x86_64"
-    - zabbix_agent_version == "6"
     
 - name: "Zabbix Agent 6 (Windows 64bit)"
   include_tasks: tasks/6/win-64bit.yml
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture == "64-bit"
-    - zbx_version == "6"
+
