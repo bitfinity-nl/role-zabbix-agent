@@ -20,12 +20,6 @@
     - ansible_distribution_version == "20.04"
     - ansible_architecture == "x86_64"
 
-- name: "Zabbix Agent 6.0 (Ubuntu 22.04LTS)"
-  import_tasks: tasks/6/ubt-2204-amd64.yml
-  when:
-    - ansible_distribution_version == "22.04"
-    - ansible_architecture == "x86_64"
-    
 - name: "Zabbix Agent (Windows 64bit)"
   import_tasks: win-64bit.yml
   when:
@@ -33,8 +27,17 @@
     - ansible_architecture == "64-bit"
     - zabbix_version == "5"
 
-- name: "Zabbix Agent (Windows 64bit)"
-  import_tasks: win-64bit.yml
+# -- Zabbix Agent 6.xx LTS --
+
+- name: "Zabbix Agent 6.xx LTS (Ubuntu 22.04LTS)"
+  import_tasks: tasks/6/ubt-2204-amd64.yml
+  when:
+    - ansible_distribution_version == "22.04"
+    - ansible_architecture == "x86_64"
+    - zabbix_agent_version == "6"
+    
+- name: "Zabbix Agent 6.xx LTS (Windows 64bit)"
+  import_tasks: tasks/win-64bit.yml
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture == "64-bit"
