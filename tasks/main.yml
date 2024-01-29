@@ -8,23 +8,23 @@
 # Description:
 #   Playbook for deploying Zabbix Agent
 
-- name: "Zabbix Agent (Ubuntu 18.04LTS)"
-  import_tasks: ubt-1804-amd64.yml
-  when:
-    - ansible_distribution_version == "18.04"
-    - ansible_architecture == "x86_64"
+#- name: "Zabbix Agent (Ubuntu 18.04LTS)"
+#  import_tasks: ubt-1804-amd64.yml
+#  when:
+#    - ansible_distribution_version == "18.04"
+#    - ansible_architecture == "x86_64"
     
-- name: "Zabbix Agent (Ubuntu 20.04LTS)"
-  import_tasks: ubt-2004-amd64.yml
-  when:
-    - ansible_distribution_version == "20.04"
-    - ansible_architecture == "x86_64"
+#- name: "Zabbix Agent (Ubuntu 20.04LTS)"
+#  import_tasks: ubt-2004-amd64.yml
+#  when:
+#    - ansible_distribution_version == "20.04"
+#    - ansible_architecture == "x86_64"
 
-- name: "Zabbix Agent (Windows 64bit)"
-  import_tasks: win-64bit.yml
-  when:
-    - ansible_os_family == "Windows"
-    - ansible_architecture == "64-bit"
+#- name: "Zabbix Agent (Windows 64bit)"
+#  import_tasks: win-64bit.yml
+#  when:
+#    - ansible_os_family == "Windows"
+#    - ansible_architecture == "64-bit"
 
 
 # -- Zabbix Agent 6.xx LTS --
