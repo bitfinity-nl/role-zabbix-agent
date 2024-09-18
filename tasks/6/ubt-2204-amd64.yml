@@ -26,7 +26,8 @@
     update_cache: yes
 
 - name: "Configure Zabbix-agent"
-  ansible.builtin.template:
+  #ansible.builtin.template:
+  template:
     src:  templates/6/zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
     backup: yes
