@@ -12,7 +12,7 @@
 #
 - name: "Download & Install deb package on host '{{ ansible_hostname }}'"
   ansible.builtin.apt:
-    deb: "https://repo.zabbix.com/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1+ubuntu24.04_all.deb"
+    deb: "https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_7.0-2+ubuntu24.04_all.deb"
     state: present
 
 - name: "Update & Upgrade APT on host '{{ ansible_hostname }}'"
