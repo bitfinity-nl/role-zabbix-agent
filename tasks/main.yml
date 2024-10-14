@@ -43,7 +43,7 @@
 
 # -- Zabbix Agent 7.xx LTS --
 - name: "Zabbix Agent 6.xx LTS (Ubuntu 24.04LTS) on host '{{ ansible_hostname }}'"
-  include_tasks: tasks/6/ubt-2204-amd64.yml
+  include_tasks: tasks/7/ubuntu/2404.yml
   when:
     - ansible_distribution_version == "24.04"
     - ansible_architecture == "x86_64"
