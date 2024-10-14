@@ -29,15 +29,21 @@
 
 # -- Zabbix Agent 6.xx LTS --
 
-- name: "Zabbix Agent 6.xx LTS (Ubuntu 22.04LTS)"
+- name: "Zabbix Agent 6.xx LTS (Ubuntu 22.04LTS) on host '{{ ansible_hostname }}'"
   include_tasks: tasks/6/ubt-2204-amd64.yml
   when:
     - ansible_distribution_version == "22.04"
     - ansible_architecture == "x86_64"
     
-- name: "Zabbix Agent 6 (Windows 64bit)"
+- name: "Zabbix Agent 6 (Windows 64bit) on host '{{ ansible_hostname }}'"
   include_tasks: tasks/6/win-64bit.yml
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture2 == "x86_64"
 
+# -- Zabbix Agent 7.xx LTS --
+- name: "Zabbix Agent 6.xx LTS (Ubuntu 24.04LTS) on host '{{ ansible_hostname }}'"
+  include_tasks: tasks/6/ubt-2204-amd64.yml
+  when:
+    - ansible_distribution_version == "24.04"
+    - ansible_architecture == "x86_64"
