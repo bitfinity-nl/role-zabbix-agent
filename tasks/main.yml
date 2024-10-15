@@ -11,7 +11,7 @@
 # -- Zabbix Agent 6.xx LTS --
 
 - name: "Install Zabbix Agent 6.xx LTS (Ubuntu 22.04LTS) on host '{{ ansible_hostname }}'"
-  include_tasks: tasks/6/ubt-2204-amd64.yml
+  include_tasks: tasks/6/ubuntu/2204.yml
   when:
     - ansible_distribution_version == "22.04"
     - ansible_architecture == "x86_64"
