@@ -25,7 +25,7 @@
     - zbx_version == "6"
     
 - name: "Install Zabbix Agent 6 (Windows 64bit) on host '{{ ansible_hostname }}'"
-  include_tasks: tasks/6/win-64bit.yml
+  include_tasks: tasks/6/windows/win-64bit.yml
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture2 == "x86_64"
