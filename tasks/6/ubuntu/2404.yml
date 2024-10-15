@@ -1,14 +1,11 @@
 ---
-# Title: role-zabbix-agent
+# Title: Zabbix agent
 #
 # Author: bitfinity-nl
 # File: tasks/ubuntu/6/2404.yml
 #
 # Description:
-#   Playbook for deploying Zabbix Agent
-#
-# Source(s):
-#   - https://www.zabbix.com/download?zabbix=6.0&os_distribution=ubuntu&os_version=22.04&components=agent&db=&ws=
+#   Zabbix agent version 6.xx on Ubuntu 24.04lts
 #
 - name: "Download & Install deb package for Zabbix 6.xx on host '{{ ansible_hostname }}'"
   ansible.builtin.apt:
