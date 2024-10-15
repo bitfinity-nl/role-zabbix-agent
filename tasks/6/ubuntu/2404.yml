@@ -10,22 +10,22 @@
 # Source(s):
 #   - https://www.zabbix.com/download?zabbix=6.0&os_distribution=ubuntu&os_version=22.04&components=agent&db=&ws=
 #
-- name: "Download & Install deb package on host '{{ ansible_hostname }}'"
+- name: "Download & Install deb package for Zabbix 6.xx on host '{{ ansible_hostname }}'"
   ansible.builtin.apt:
     deb: "https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-6+ubuntu24.04_all.deb"
     state: present
 
-- name: "Update & Upgrade APT on host '{{ ansible_hostname }}'"
+- name: "Update & Upgrade APT on host for Zabbix 6.xx on host'{{ ansible_hostname }}'"
   ansible.builtin.apt:
     upgrade: dist
     
-- name: "Install Zabbix-agent on host '{{ ansible_hostname }}'"
+- name: "Install Zabbix-agent for Zabbix 6.xx on host '{{ ansible_hostname }}'"
   ansible.builtin.apt:
     name: zabbix-agent
     state: present
     update_cache: yes
 
-- name: "Configure Zabbix-agent on host '{{ ansible_hostname }}'"
+- name: "Configure Zabbix-agent for Zabbix 6.xx on host '{{ ansible_hostname }}'"
   ansible.builtin.template:
     src:  templates/6/zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
@@ -33,13 +33,13 @@
   notify:
     - restart_zabbix_agent
 
-- name: "Enable zabbix agent on startup on host '{{ ansible_hostname }}'"
+- name: "Enable systemd zabbix agent for Zabbix 6.xx on startup on host '{{ ansible_hostname }}'"
   systemd:
     name: zabbix-agent
     state: started
     enabled: yes
 
-- name: "Allow traffic from Zabbix server to Zabbix Agent (Active on port 10051/tcp / Passive on port 10050/tcp) on host '{{ ansible_hostname }}'"
+- name: "Allow traffic between Zabbix server and Zabbix 6.xx agent (Active on port 10051/tcp / Passive on port 10050/tcp) on host '{{ ansible_hostname }}'"
   community.general.ufw:
     rule: allow
     port: "{{ item.port }}"
