@@ -2,7 +2,7 @@
 # Title: role-zabbix-agent
 #
 # Author: bitfinity-nl
-# File: tasks/6/win-64bit.yml
+# File: tasks/6/windows/win-64bit.yml
 #
 # Description:
 #   Playbook for deploying Zabbix Agent
