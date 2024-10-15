@@ -7,6 +7,11 @@
 # Description:
 #   Zabbix agent version 6.xx on Ubuntu 24.04lts
 #
+- name: "Set zbx_agt_HostMetadata"
+  ansible.builtin.set_fact:
+    zbx_agt_HostMetadata: "Linux,Ubuntu"
+  when: zbx_agt_HostMetadata|length > 0
+    
 - name: "Download & Install deb package for Zabbix 6.xx on host '{{ ansible_hostname }}'"
   ansible.builtin.apt:
     deb: "https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-6+ubuntu24.04_all.deb"
