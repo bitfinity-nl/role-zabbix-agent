@@ -45,7 +45,7 @@ zbx_agt_ServerActive          : '{{ global_zabbix_active_server }}'
 zbx_agt_Hostname              : '{{ ansible_hostname }}'
 zbx_agt_EnableRemoteCommands  : '1'
 zbx_agt_LogRemoteCommands     : '0'
-zbx_agt_HostMetadata          : 'Server'
+zbx_agt_HostMetadata          : ''
 
 
 # -- Zabbix Agent Windows - specific settings (Zip version)--
