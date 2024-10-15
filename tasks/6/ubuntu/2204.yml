@@ -2,7 +2,7 @@
 # Title: role-zabbix-agent
 #
 # Author: bitfinity-nl
-# File: tasks/ubt-2204-amd64.yml
+# File: tasks/6/ubuntu/2204.yml
 #
 # Description:
 #   Playbook for deploying Zabbix Agent
