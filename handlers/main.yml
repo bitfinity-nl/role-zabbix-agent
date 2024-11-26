@@ -15,6 +15,7 @@
     masked: no
 
 - name: "restart_win_zbx_agent"
-  win_service:
-    name: "Zabbix Agent"
+  ansible.windows.win_service:
+    name: Zabbix Agent
     state: restarted
+
