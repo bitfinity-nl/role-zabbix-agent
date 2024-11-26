@@ -14,16 +14,19 @@
 #    zbx_agt_win_checksum        : '{{ zbx_agt_win_checksum_6 }}'
 #    zbx_agt_checksum_algorithem : '{{ zbx_agt_checksum_algorithem_6 }}'
 
-# -- 
+- name: "Set variable 'zbx_agt_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
+  ansible.builtin.set_fact:
+    zbx_agt_HostMetadata: "Microsoft,Windows"
+  when: zbx_agt_HostMetadata|length > 0
 
 - name: "Check if Zabbix service is installed"
-  win_service:
+  ansible.windows.win_service:
     name: Zabbix Agent
   register: zbx_result
   ignore_errors: True
 
 - name: "Stop service Zabbix agent"
-  win_service:
+  ansible.windows.win_service:
     name: Zabbix Agent
     start_mode: disabled
     state: stopped
