@@ -16,5 +16,5 @@
 
 - name: "restart_win_zbx_agent"
   win_service:
-    name: Zabbix Agent
+    name: "Zabbix Agent"
     state: restarted
