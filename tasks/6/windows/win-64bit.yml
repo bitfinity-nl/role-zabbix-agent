@@ -34,26 +34,26 @@
     - zbx_result.exists == True and zbx_state == 'install'
     
 - name: "Uninstall Zabbix agent when exist and is installed on host '{{ ansible_hostname }}'"
-  win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
+  ansible.windows.win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
   when:
     - zbx_result.exists == True and zbx_state == 'install'
 
-- name: "Create local Ansible repository"
-  win_file:
+- name: "Remove local Ansible repository when exists and zbx_state is 'install' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_file:
     path: "{{ zbx_pkg_local_repository }}"
     state: absent
   when:
     - zbx_result.exists == True and zbx_state == 'install'
     
-- name: "Create local Ansible repository"
-  win_file:
+- name: "Create local Ansible repository when not exists and zbx_state is 'install' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_file:
     path: "{{ zbx_pkg_local_repository }}"
     state: directory
   when:
   - zbx_result.exists == False or zbx_state == 'install'
 
-- name: "Download Zabbix Agent (Zip version)"
-  win_get_url:
+- name: "Download Zabbix Agent (Zip version) from url '{{ zbx_agt_win_src_6 }}' to dest '{{ zbx_pkg_local_repository }}\\zabbix-agent.zip' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_get_url:
     url: "{{ zbx_agt_win_src_6 }}"
     dest: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
     checksum: "{{ zbx_agt_win_checksum_6 }}"
@@ -61,39 +61,39 @@
   when:
   - zbx_result.exists == False or zbx_state == 'install'
 
-- name: "Unpack {{ zbx_pkg_local_repository }}\\zabbix-agent.zip to "
-  win_unzip:
+- name: "Unpack {{ zbx_pkg_local_repository }}\\zabbix-agent.zip to 'C:\Zabbix\' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_unzip:
     src: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
     dest: C:\Zabbix\
   when:
   - zbx_result.exists == False or zbx_state == 'install'
 
-- name: "Transfer and configure template to client"
-  win_template:
+- name: "Transfer and configure template 'zabbix_agentd.win.conf.j2' to directory 'C:\Zabbix\conf\zabbix_agentd.conf' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_template:
     src: zabbix_agentd.win.conf.j2
     dest: C:\Zabbix\conf\zabbix_agentd.conf
     force: yes
   notify:
     - restart_win_zbx_agent
 
-- name: "Install zabbix agent as a service"
-  win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --install
+- name: "Install Windows service 'Zabbix Agent' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --install
   when: 
   - zbx_result.exists == False or zbx_state == 'install'
 
-- name: "Start service Zabbix agent"
-  win_service:
+- name: "Start Windows service 'Zabbix Agent' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_service:
     name: Zabbix Agent
     start_mode: auto
     state: started
 
-- name: "Cleanup local repository"
-  win_file:
+- name: "Cleanup local repository '{{ zbx_pkg_local_repository }}' on host '{{ ansible_hostname }}'"
+  ansible.windows.win_file:
     path: "{{ zbx_pkg_local_repository }}"
     state: absent
     
-- name: "Firewall rule to allow Zabbix Passive (10050) on TCP port 10050"
-  win_firewall_rule:
+- name: "Firewall rule to allow Zabbix Passive (10050) on TCP port 10050 on host '{{ ansible_hostname }}'"
+  ansible.windows.win_firewall_rule:
     name: Zabbix Passive (10050)
     localport: 10050
     action: allow
@@ -101,7 +101,7 @@
     protocol: tcp
     state: present
 
-- name: "Firewall rule to allow ICMPv4"
+- name: "Firewall rule to allow ICMPv4 on host '{{ ansible_hostname }}'"
   win_firewall_rule:
     name: Firewall rule to allow ICMPv4
     localport: any
