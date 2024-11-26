@@ -59,7 +59,7 @@ zbx_agt_HostMetadata          : ''
 # Comment:
 #   See Zabbix documentation for more specific arguments.
 #
-zbx_pkg_local_repository      : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
+zbx_pkg_local_repository          : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
 
 # -- Specific repository settings Zabbix Agent 6 --
 zbx_agt_win_src_6                 : 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.36/zabbix_agent-6.0.36-windows-amd64-openssl.zip'
