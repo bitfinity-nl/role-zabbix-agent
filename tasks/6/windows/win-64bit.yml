@@ -19,13 +19,13 @@
     zbx_agt_HostMetadata: "Microsoft,Windows"
   when: zbx_agt_HostMetadata|length > 0
 
-- name: "Check if Zabbix service is installed"
+- name: "Check if Zabbix service is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_service:
     name: Zabbix Agent
   register: zbx_result
   ignore_errors: True
 
-- name: "Stop service Zabbix agent"
+- name: "Stop service Zabbix agent when exist and is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_service:
     name: Zabbix Agent
     start_mode: disabled
@@ -33,7 +33,7 @@
   when:
     - zbx_result.exists == True and zbx_state == 'install'
     
-- name: "Uninstall Zabbix agent"
+- name: "Uninstall Zabbix agent when exist and is installed on host '{{ ansible_hostname }}'"
   win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
   when:
     - zbx_result.exists == True and zbx_state == 'install'
