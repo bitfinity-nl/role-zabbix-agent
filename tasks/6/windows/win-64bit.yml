@@ -13,8 +13,6 @@
     zbx_agt_win_checksum            : '{{ zbx_agt_win_checksum_6 }}'
     zbx_agt_win_checksum_algorithem : '{{ zbx_agt_win_checksum_algorithem_6 }}'
 
-
-
 - name: "Set variable 'zbx_agt_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
   ansible.builtin.set_fact:
     zbx_agt_HostMetadata: "Microsoft,Windows"
