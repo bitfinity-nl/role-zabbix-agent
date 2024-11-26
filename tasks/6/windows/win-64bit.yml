@@ -73,8 +73,6 @@
     src: zabbix_agentd.win.conf.j2
     dest: C:\Zabbix\conf\zabbix_agentd.conf
     force: yes
-  notify:
-    - restart_win_zbx_agent
 
 - name: "Install Windows service 'Zabbix Agent' on host '{{ ansible_hostname }}'"
   ansible.windows.win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --install
