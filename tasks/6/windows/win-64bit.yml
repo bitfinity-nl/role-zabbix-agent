@@ -9,10 +9,12 @@
 #
 - name: "Set facts for Zabbix agent version"
   ansible.builtin.set_fact:
-    zbx_agt_win_src             : '{{ zbx_agt_win_src_6 }}'
-    zbx_agt_win_checksum        : '{{ zbx_agt_checksum_6 }}'
-    zbx_agt_checksum_algorithem : '{{ zbx_agt_checksum_algorithem_6 }}'
-  
+    zbx_agt_win_src                 : '{{ zbx_agt_win_src_6 }}'
+    zbx_agt_win_checksum            : '{{ zbx_agt_win_checksum_6 }}'
+    zbx_agt_win_checksum_algorithem : '{{ zbx_agt_win_checksum_algorithem_6 }}'
+
+
+
 - name: "Set variable 'zbx_agt_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
   ansible.builtin.set_fact:
     zbx_agt_HostMetadata: "Microsoft,Windows"
@@ -65,7 +67,7 @@
     url: "{{ zbx_agt_win_src }}"
     dest: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
     checksum: "{{ zbx_agt_win_checksum }}"
-    checksum_algorithm: "{{ zbx_agt_checksum_algorithem }}"
+    checksum_algorithm: "{{ zbx_agt_win_checksum_algorithem }}"
   when:
   - zbx_result.exists == False or zbx_state == 'install'
 
