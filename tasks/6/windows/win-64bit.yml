@@ -68,7 +68,7 @@
   when:
   - zbx_result.exists == False or zbx_state == 'install'
 
-- name: "Transfer and configure template 'zabbix_agentd.win.conf.j2' to directory 'C:\Zabbix\conf\zabbix_agentd.conf' on host '{{ ansible_hostname }}'"
+- name: "Transfer and configure template 'zabbix_agentd.win.conf.j2' to directory 'C:\\Zabbix\\conf\\zabbix_agentd.conf' on host '{{ ansible_hostname }}'"
   ansible.windows.win_template:
     src: zabbix_agentd.win.conf.j2
     dest: C:\Zabbix\conf\zabbix_agentd.conf
