@@ -51,10 +51,10 @@ zbx_agt_HostMetadata          : ''
 # -- Zabbix Agent Windows - specific settings (Zip version)--
 # 
 # Variable(s):
-#   zbx_pkg_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent'                     # Common download locations on the host. 
-#   zbx_agt_win_src            : 'https://www.zabbix.com/downloads/4.0.14/zabbix_agents-4.0.14-win-amd64-openssl.zip'  # source URL to Zabbix agent archive package.
-#   zbx_agt_checksum           : '552f5146f12aed4217f9d0408f29e4d6'                                                    # Checksum for the Zabbix agent archive package.
-#   zbx_agt_checksum_algorithm : 'md5'                                                                                 # Checksum algorithem for the Zabbix agent archive package.
+#   zbx_pkg_local_repository       : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent'                     # Common download locations on the host. 
+#   zbx_agt_win_src                : 'https://www.zabbix.com/downloads/4.0.14/zabbix_agents-4.0.14-win-amd64-openssl.zip'  # source URL to Zabbix agent archive package.
+#   zbx_agt_win_checksum           : '552f5146f12aed4217f9d0408f29e4d6'                                                    # Checksum for the Zabbix agent archive package.
+#   zbx_agt_win_checksum_algorithm : 'md5'                                                                                 # Checksum algorithem for the Zabbix agent archive package.
 #
 # Comment:
 #   See Zabbix documentation for more specific arguments.
@@ -62,6 +62,6 @@ zbx_agt_HostMetadata          : ''
 zbx_pkg_local_repository      : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
 
 # -- Specific repository settings Zabbix Agent 6 --
-zbx_agt_win_src_6             : 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.36/zabbix_agent-6.0.36-windows-amd64-openssl.zip'
-zbx_agt_win_checksum_6        : 'b227b2678161e795e62edf968638334e'
-zbx_agt_checksum_algorithem_6 : 'md5'
+zbx_agt_win_src_6                 : 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.36/zabbix_agent-6.0.36-windows-amd64-openssl.zip'
+zbx_agt_win_checksum_6            : 'b227b2678161e795e62edf968638334e'
+zbx_agt_win_checksum_algorithem_6 : 'md5'
