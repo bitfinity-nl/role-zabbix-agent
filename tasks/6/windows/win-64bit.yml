@@ -53,15 +53,6 @@
   when:
   - zbx_result.exists == False or zbx_state == 'install'
 
-#- name: "Download Zabbix Agent (Zip version) from url '{{ zbx_agt_win_src_6 }}' to dest '{{ zbx_pkg_local_repository }}\\zabbix-agent.zip' on host '{{ ansible_hostname }}'"
-#  ansible.windows.win_get_url:
-#    url: "{{ zbx_agt_win_src_6 }}"
-#    dest: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
-#    checksum: "{{ zbx_agt_win_checksum_6 }}"
-#    checksum_algorithm: "{{ zbx_agt_checksum_algorithem_6 }}"
-#  when:
-#  - zbx_result.exists == False or zbx_state == 'install'
-
 - name: "Download Zabbix Agent (Zip version) from url '{{ zbx_agt_win_src }}' to dest '{{ zbx_pkg_local_repository }}\\zabbix-agent.zip' on host '{{ ansible_hostname }}'"
   ansible.windows.win_get_url:
     url: "{{ zbx_agt_win_src }}"
