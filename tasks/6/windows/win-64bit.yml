@@ -62,7 +62,7 @@
   - zbx_result.exists == False or zbx_state == 'install'
 
 - name: "Unpack {{ zbx_pkg_local_repository }}\\zabbix-agent.zip to 'C:\\Zabbix\\' on host '{{ ansible_hostname }}'"
-  ansible.windows.win_unzip:
+  community.windows.win_unzip:
     src: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
     dest: C:\Zabbix\
   when:
