@@ -92,8 +92,8 @@
     state: absent
     
 - name: "Firewall rule to allow Zabbix Passive (10050) on TCP port 10050 on host '{{ ansible_hostname }}'"
-  community.windows.win_firewall:
-    name: Zabbix Passive (10050) ** Managed by Ansible **
+  community.windows.win_firewall_rule:
+    name: Zabbix Passive (10050) - ** Managed by Ansible **
     localport: 10050
     action: allow
     direction: in
@@ -102,8 +102,8 @@
     enabled: true
     
 - name: "Firewall rule to allow ICMPv4 on host '{{ ansible_hostname }}'"
-  community.windows.win_firewall:
-    name: Firewall rule to allow ICMPv4
+  community.windows.win_firewall_rule:
+    name: Firewall rule to allow ICMPv4 - ** Managed by Ansible **
     localport: any
     action: allow
     direction: in
