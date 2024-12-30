@@ -99,7 +99,7 @@
     direction: in
     protocol: tcp
     state: present
-    enabled: true
+    enabled: false
     
 - name: "Firewall rule to allow ICMPv4 on host '{{ ansible_hostname }}'"
   community.windows.win_firewall:
