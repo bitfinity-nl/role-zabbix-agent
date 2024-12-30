@@ -9,8 +9,8 @@
     protocol: tcp
     state: present
     enabled: true
-  when:
-    - ansible_os_family == "Windows"
+#  when:
+#    - ansible_os_family == "Windows"
 
 - name: "Firewall rule to allow ICMPv4 on host '{{ ansible_hostname }}'"
   community.windows.win_firewall_rule:
@@ -22,5 +22,5 @@
     profiles: Domain
     state: present
     enabled: true
-  when:
-    - ansible_os_family == "Windows"
+ # when:
+ #   - ansible_os_family == "Windows"
