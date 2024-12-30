@@ -90,3 +90,24 @@
   ansible.windows.win_file:
     path: "{{ zbx_pkg_local_repository }}"
     state: absent
+
+- name: "Firewall rule to allow Zabbix Passive (10050) on TCP port 10050 on host '{{ ansible_hostname }}'"
+  community.windows.win_firewall_rule:
+    name: Zabbix Passive (10050/tcp) ** Managed by ansible **
+    localport: 10050
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: true
+
+- name: "Firewall rule to allow ICMPv4 on host '{{ ansible_hostname }}'"
+  community.windows.win_firewall_rule:
+    name: Firewall rule to allow ICMPv4 ** Managed by ansible **
+    localport: any
+    action: allow
+    direction: in
+    protocol: ICMPv4
+    profiles: Domain
+    state: present
+    enabled: true
