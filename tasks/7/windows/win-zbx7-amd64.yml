@@ -98,8 +98,9 @@
     action: allow
     direction: in
     protocol: tcp
-    state: enabled
-
+    state: present
+    enabled: true
+    
 - name: "Firewall rule to allow ICMPv4 on host '{{ ansible_hostname }}'"
   community.windows.win_firewall:
     name: Firewall rule to allow ICMPv4
@@ -108,5 +109,5 @@
     direction: in
     protocol: ICMPv4
     profiles: Domain
-    state: enabled
-    enabled: yes
+    state: present
+    enabled: true
