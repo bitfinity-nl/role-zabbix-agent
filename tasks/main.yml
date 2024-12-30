@@ -19,6 +19,7 @@
   include_tasks: tasks/7/windows/win-zbx-7-amd64.yml
   when:
     - ansible_os_family == "Windows"
+    - ansible_architecture == "x86_64"  
     - zbx_version == "7"
 
 
