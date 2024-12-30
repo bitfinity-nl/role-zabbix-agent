@@ -32,6 +32,19 @@
     enabled: true
   when:
     - ansible_os_family == "Windows"
+
+- name: "Firewall rule to allow ICMPv4 on host '{{ ansible_hostname }}'"
+  community.windows.win_firewall_rule:
+    name: Firewall rule to allow ICMPv4 ** Managed by ansible **
+    localport: any
+    action: allow
+    direction: in
+    protocol: ICMPv4
+    profiles: Domain
+    state: present
+    enabled: true
+  when:
+    - ansible_os_family == "Windows"
     
 # -- Zabbix Agent 6.xx LTS --
 
