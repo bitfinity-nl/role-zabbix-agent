@@ -77,14 +77,3 @@ zabbix_agent:
       windows_checksum            : 'b227b2678161e795e62edf968638334e',
       windows_checksum_algorithem : 'md5'
       }
-      
-
-# zbx_agent_windows_source_7              : 'https://cdn.zabbix.com/zabbix/binaries/stable/7.0/7.0.7/zabbix_agent-7.0.7-windows-amd64-openssl.zip'
-# zbx_agent_windows_checksum_7            : '4c25a60baa970703cad6c30820613671'
-# zbx_agent_windows_checksum_algorithem_7 : 'md5'
-
-
-# -- Specific repository settings Zabbix Agent 6 --
-#zbx_agt_win_src_6                 : 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.36/zabbix_agent-6.0.36-windows-amd64-openssl.zip'
-#zbx_agt_win_checksum_6            : 'b227b2678161e795e62edf968638334e'
-#zbx_agt_win_checksum_algorithem_6 : 'md5'
