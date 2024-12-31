@@ -21,7 +21,7 @@
   when:
     - ansible_os_family == "Windows"
     - ansible_architecture == "x86_64"  
-    - zbx_version == zabbix_install_version
+    - zbx_version == '7'
 
 
     
