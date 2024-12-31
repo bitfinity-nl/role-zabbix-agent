@@ -20,7 +20,7 @@
   with_items: "{{ zabbix_agent }}"
   when:
     - ansible_os_family == "Windows"
-    - ansible_architecture == "x86_64"  
+    #- ansible_architecture == "x86_64"  
     #- zbx_version == '7'
 
 
