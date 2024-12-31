@@ -20,5 +20,4 @@
   
 - name: "Install Zabbix Agent {{ zbx_agt_win_version }} (Windows 64bit) on host '{{ ansible_hostname }}'"
   include_tasks: tasks/windows/win-zbx-amd64.yml
-  with_items: "{{ zabbix_agent }}"
   when: zabbix_install_version == item.version
