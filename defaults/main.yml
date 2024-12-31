@@ -68,8 +68,7 @@ zbx_agt_HostMetadata          : ''
 zbx_pkg_local_repository          : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
 
 # --  Repository settings for Zabbix --
-zabbix_install_version: '7'
-
+zabbix_install_version            : '7'
 zabbix_repository:
   - { version                     : '7',
       ubuntu_source               : 'https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu{{ ansible_distribution_version }}_all.deb',
