@@ -12,10 +12,10 @@
 #
 - name: "Set facts for Zabbix agent version that can be found in defaults/main.yml or overwritten in your playbook"
   ansible.builtin.set_fact:
-    zbx_agt_win_version             : '{{ item.version }}'
-    zbx_agt_win_src                 : '{{ item.windows_source }}'
-    zbx_agt_win_checksum            : '{{ item.windows_checksum }}'
-    zbx_agt_win_checksum_algorithem : '{{ item.windows_checksum_algorithem }}'
+    zabbix_agent_win_version             : '{{ item.version }}'
+    zabbix_agent_win_src                 : '{{ item.windows_source }}'
+    zabbix_agent_win_checksum            : '{{ item.windows_checksum }}'
+    zabbix_agent_win_checksum_algorithem : '{{ item.windows_checksum_algorithem }}'
   when: zabbix_install_version == item.version
   
 - name: "Install Zabbix Agent when the install version '{{ zabbix_install_version }}' is equal to the profile version '{{ item.version }}' on host '{{ ansible_hostname }}'"
