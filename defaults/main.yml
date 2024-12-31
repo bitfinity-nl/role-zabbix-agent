@@ -63,10 +63,10 @@ zbx_pkg_local_repository          : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\
 
 # -- Specific repository settings Zabbix Agent 7 --
 zabbix_agent:
-  - { version                     : '7'
-      ubuntu_source               : 'https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb'
-      windows_source              : 'https://cdn.zabbix.com/zabbix/binaries/stable/7.0/7.0.7/zabbix_agent-7.0.7-windows-amd64-openssl.zip'
-      windows_checksum            : '4c25a60baa970703cad6c30820613671'
+  - { version                     : '7',
+      ubuntu_source               : 'https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb',
+      windows_source              : 'https://cdn.zabbix.com/zabbix/binaries/stable/7.0/7.0.7/zabbix_agent-7.0.7-windows-amd64-openssl.zip',
+      windows_checksum            : '4c25a60baa970703cad6c30820613671',
       windows_checksum_algorithem : 'md5'
       }
       
