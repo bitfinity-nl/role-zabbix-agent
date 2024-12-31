@@ -51,7 +51,7 @@ zabbix_agent_HostMetadata          : ''
 # -- Zabbix Agent Windows - specific settings (Zip version)--
 # 
 # Variable(s):
-#
+#   zabbix_package_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent'                                                                                   # Zabbix local temporary package repository for installation (Windows only).
 #   zabbix_install_version            : '7'                                                                                                                                                 # Zabbix version that is going to be installed.
 #   zabbix_repository:
 #     - { version                     : '7',                                                                                                                                                # Zabbix version.
@@ -61,13 +61,10 @@ zabbix_agent_HostMetadata          : ''
 #         windows_checksum_algorithem : 'md5'                                                                                                                                               # Checksum algorithem for the Zabbix agent archive package.
 #         }
 #
-
 # Comment:
 #   See Zabbix documentation for more specific arguments.
 #
-zbx_pkg_local_repository          : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
-
-# --  Repository settings for Zabbix --
+zabbix_package_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
 zabbix_install_version            : '7'
 zabbix_repository:
   - { version                     : '7',
