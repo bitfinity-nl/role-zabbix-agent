@@ -7,7 +7,7 @@
 # File: tasks/windows/zabbix-agent-install-windows.yml
 #
 # Description:
-#   Taskfile for installing Zabbix Agent on a Windows host.
+#   Taskfile for installing Zabbix Agent on a Windows.
 #
 - name: "Set variable 'zbx_agt_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
   ansible.builtin.set_fact:
