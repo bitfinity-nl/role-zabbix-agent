@@ -29,6 +29,9 @@ zabbix_state                     : 'install'
 #   zabbix_agent_LogRemoteCommands    : '0'                       # Used for loging remote commands.
 #   zabbix_agent_HostMetadata         : 'Server'                  # Used for autoregistration. 
 #
+# Comment:
+#   See Zabbix documentation for more specific arguments.
+#
 zabbix_agent_LogFileSize          : '5'
 zabbix_agent_Server               : '{{ global_zabbix_server }}'
 zabbix_agent_ServerActive         : '{{ global_zabbix_active_server }}'
@@ -50,9 +53,6 @@ zabbix_agent_HostMetadata         : ''
 #         windows_checksum            : '4c25a60baa970703cad6c30820613671',                                                                                                                 # Checksum for the Zabbix agent archive package.
 #         windows_checksum_algorithem : 'md5'                                                                                                                                               # Checksum algorithem for the Zabbix agent archive package.
 #         }
-#
-# Comment:
-#   See Zabbix documentation for more specific arguments.
 #
 zabbix_package_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
 zabbix_install_version            : '7'
