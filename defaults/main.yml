@@ -21,7 +21,7 @@
 #
 zbx_version               : '7'
 zbx_state                 : 'install'
-#zbx_repository            : 'https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb'
+
 zbx_timezone              : 'Europe/Amsterdam' 
 zbx_servername            : '{{ ansible_hostname }}'
 zbx_server                : '{{ global_zabbix_server }}'
@@ -51,20 +51,26 @@ zbx_agt_HostMetadata          : ''
 # -- Zabbix Agent Windows - specific settings (Zip version)--
 # 
 # Variable(s):
-#   zbx_pkg_local_repository       : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent'                     # Common download locations on the host. 
-#   zbx_agt_win_src                : 'https://www.zabbix.com/downloads/4.0.14/zabbix_agents-4.0.14-win-amd64-openssl.zip'  # source URL to Zabbix agent archive package.
-#   zbx_agt_win_checksum           : '552f5146f12aed4217f9d0408f29e4d6'                                                    # Checksum for the Zabbix agent archive package.
-#   zbx_agt_win_checksum_algorithm : 'md5'                                                                                 # Checksum algorithem for the Zabbix agent archive package.
 #
+#   zabbix_install_version            : '7'                                                                                                                                                 # Zabbix version that is going to be installed.
+#   zabbix_repository:
+#     - { version                     : '7',                                                                                                                                                # Zabbix version.
+#         ubuntu_source               : 'https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu{{ ansible_distribution_version }}_all.deb',  # Source URL to Zabbix DEB-package.
+#         windows_source              : 'https://cdn.zabbix.com/zabbix/binaries/stable/7.0/7.0.7/zabbix_agent-7.0.7-windows-amd64-openssl.zip',                                             # source URL to Zabbix agent archive package.
+#         windows_checksum            : '4c25a60baa970703cad6c30820613671',                                                                                                                 # Checksum for the Zabbix agent archive package.
+#         windows_checksum_algorithem : 'md5'                                                                                                                                               # Checksum algorithem for the Zabbix agent archive package.
+#         }
+#
+
 # Comment:
 #   See Zabbix documentation for more specific arguments.
 #
 zbx_pkg_local_repository          : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent' 
 
-# -- Specific repository settings Zabbix Agent 7 --
+# --  Repository settings for Zabbix --
 zabbix_install_version: '7'
 
-zabbix_agent:
+zabbix_repository:
   - { version                     : '7',
       ubuntu_source               : 'https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu{{ ansible_distribution_version }}_all.deb',
       windows_source              : 'https://cdn.zabbix.com/zabbix/binaries/stable/7.0/7.0.7/zabbix_agent-7.0.7-windows-amd64-openssl.zip',
