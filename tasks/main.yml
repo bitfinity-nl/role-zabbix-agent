@@ -6,34 +6,14 @@
 #
 # Description:
 #   Playbook for deploying Zabbix Agent
-
-# -- Zabbix Agent 7.xx LTS --
-- name: "Install Zabbix Agent 7.xx LTS (Ubuntu 24.04LTS) on host '{{ ansible_hostname }}'"
+#
+- name: "Install Zabbix Agent when operating system is Ubuntu on host '{{ ansible_hostname }}'"
   include_tasks: tasks/ubuntu/zabbix-agent-install-ubuntu.yml
   with_items: "{{ zabbix_agent }}"
   when: ansible_distribution == "Ubuntu"
-#    - ansible_distribution_version == "24.04"
-#    - ansible_architecture == "x86_64"
-#    - zbx_version == "7"
 
 - name: "Install Zabbix Agent when operating system is Windows on host '{{ ansible_hostname }}'"
   include_tasks: tasks/windows/zabbix-agent-version.yml
   with_items: "{{ zabbix_agent }}"
   when:
     - ansible_os_family == "Windows"
-    
-# -- Zabbix Agent 6.xx LTS --
-
-#- name: "Install Zabbix Agent 6.xx LTS (Ubuntu 22.04LTS) on host '{{ ansible_hostname }}'"
-#  include_tasks: tasks/6/ubuntu/2204.yml
-#  when:
-#    - ansible_distribution_version == "22.04"
-#    - ansible_architecture == "x86_64"
-#    - zbx_version == "6"
-
-#- name: "Install Zabbix Agent 6.xx LTS (Ubuntu 24.04LTS) on host '{{ ansible_hostname }}'"
-#  include_tasks: tasks/6/ubuntu/2404.yml
-#  when:
-#    - ansible_distribution_version == "24.04"
-#    - ansible_architecture == "x86_64"
-#    - zbx_version == "6"
