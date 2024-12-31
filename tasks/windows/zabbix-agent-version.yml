@@ -18,6 +18,6 @@
     zbx_agt_win_checksum_algorithem : '{{ item.windows_checksum_algorithem }}'
   when: zabbix_install_version == item.version
   
-- name: "Install Zabbix Agent {{ zbx_agt_win_version }} (Windows 64bit) on host '{{ ansible_hostname }}'"
-  include_tasks: tasks/windows/win-zbx-amd64.yml
+- name: "Install Zabbix Agent when the install version '{{ zabbix_install_version }}' is equal to the profile version '{{ zbx_agt_win_version }}' on host '{{ ansible_hostname }}'"
+  include_tasks: tasks/windows/zabbix-agent-install-windows.yml
   when: zabbix_install_version == item.version
