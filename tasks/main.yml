@@ -8,9 +8,9 @@
 #   Playbook for deploying Zabbix Agent
 
 # -- Zabbix Agent 7.xx LTS --
-#- name: "Install Zabbix Agent 7.xx LTS (Ubuntu 24.04LTS) on host '{{ ansible_hostname }}'"
-#  include_tasks: tasks/7/ubuntu/2404.yml
-#  when:
+- name: "Install Zabbix Agent 7.xx LTS (Ubuntu 24.04LTS) on host '{{ ansible_hostname }}'"
+  include_tasks: tasks/ubuntu/zabbix-agent-install-ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
 #    - ansible_distribution_version == "24.04"
 #    - ansible_architecture == "x86_64"
 #    - zbx_version == "7"
