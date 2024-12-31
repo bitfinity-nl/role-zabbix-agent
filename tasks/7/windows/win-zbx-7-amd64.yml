@@ -11,6 +11,7 @@
 #
 - name: "Set facts for Zabbix agent version that can be found in defaults/main.yml or overwritten in your playbook"
   ansible.builtin.set_fact:
+    zbx_agt_win_version             : '{{ item.version }}'
     zbx_agt_win_src                 : '{{ item.windows_source }}'
     zbx_agt_win_checksum            : '{{ item.windows_checksum }}'
     zbx_agt_win_checksum_algorithem : '{{ item.windows_checksum_algorithem }}'
@@ -23,26 +24,28 @@
     - zbx_agt_HostMetadata|length > 0
     - zabbix_install_version == item.version
     
-- name: "Check if Zabbix service is installed on host '{{ ansible_hostname }}'"
+- name: "Check if Zabbix {{ zbx_agt_win_version }} service is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_service:
     name: Zabbix Agent
   register: zbx_result
   ignore_errors: True
   when: zabbix_install_version == item.version
 
-- name: "Stop service Zabbix agent when exist and is installed on host '{{ ansible_hostname }}'"
+- name: "Stop service Zabbix agent {{ zbx_agt_win_version }} when exist and is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_service:
     name: Zabbix Agent
     start_mode: disabled
     state: stopped
   when:
-    - zbx_result.exists == True and zbx_state == 'install'
+    - zbx_result.exists == True
+    - zbx_state == 'install'
     - zabbix_install_version == item.version
     
-- name: "Uninstall Zabbix agent when exist and is installed on host '{{ ansible_hostname }}'"
+- name: "Uninstall Zabbix agent {{ zbx_agt_win_version }} when exist and is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
   when:
-    - zbx_result.exists == True and zbx_state == 'install'
+    - zbx_result.exists == True
+    - zbx_state == 'install'
     - zabbix_install_version == item.version
     
 - name: "Remove local Ansible repository when exists and zbx_state is 'install' on host '{{ ansible_hostname }}'"
@@ -50,7 +53,8 @@
     path: "{{ zbx_pkg_local_repository }}"
     state: absent
   when:
-    - zbx_result.exists == True and zbx_state == 'install'
+    - zbx_result.exists == True 
+    - zbx_state == 'install'
     - zabbix_install_version == item.version
       
 - name: "Create local Ansible repository when not exists and zbx_state is 'install' on host '{{ ansible_hostname }}'"
@@ -61,7 +65,7 @@
   - zbx_result.exists == False or zbx_state == 'install'
   - zabbix_install_version == item.version
   
-- name: "Download Zabbix Agent (Zip version) from url '{{ zbx_agt_win_src }}' to dest '{{ zbx_pkg_local_repository }}\\zabbix-agent.zip' on host '{{ ansible_hostname }}'"
+- name: "Download Zabbix Agent {{ zbx_agt_win_version }} (Zip version) from url '{{ zbx_agt_win_src }}' to dest '{{ zbx_pkg_local_repository }}\\zabbix-agent.zip' on host '{{ ansible_hostname }}'"
   ansible.windows.win_get_url:
     url: "{{ zbx_agt_win_src }}"
     dest: "{{ zbx_pkg_local_repository }}\\zabbix-agent.zip"
