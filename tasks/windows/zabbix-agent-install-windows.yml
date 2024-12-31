@@ -60,7 +60,7 @@
 
 - name: "Transfer and configure template 'zabbix_agentd.win.conf.j2' to directory 'C:\\Zabbix\\conf\\zabbix_agentd.conf' on host '{{ ansible_hostname }}'"
   ansible.windows.win_template:
-    src: zabbix_agentd.win.conf.j2
+    src: templates/windows/zabbix_agentd.win.conf.j2
     dest: C:\Zabbix\conf\zabbix_agentd.conf
     force: yes
   when: zabbix_install_version == item.version
