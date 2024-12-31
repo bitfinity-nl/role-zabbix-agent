@@ -5,9 +5,9 @@ Zabbix Agent, The Enterprise-Class Open Source Network Monitoring Agent.
 Example(s)
 ----------------
 
-# Zabbix Agent (Ubuntu 20.04lts AMD64)
+# Example Zabbix Agent
 ```
-- hosts: zabbix-server
+- hosts: zabbix_agents
   become: yes
 
   vars:
