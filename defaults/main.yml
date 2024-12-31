@@ -17,6 +17,7 @@
 #
 zabbix_state                     : 'install'
 
+
 # -- Zabbix agent settings (zabbix_agent.conf.j2) --
 #
 # Variable(s):
