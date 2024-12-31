@@ -1,12 +1,14 @@
 ---
-# Title: role-zabbix-agent
+# Title: Handlers for Zabbix agent
 #
 # Author: bitfinity-nl
+# Owner: bitfinity-nl
+#
 # File: handlers/main.yml
 #
 # Description:
-#   Playbook for deploying Zabbix Agents
-
+#   Handlers for stopping/starting/restarting services.
+#
 - name: "restart_zabbix_agent"
   systemd:
     name: zabbix-agent
