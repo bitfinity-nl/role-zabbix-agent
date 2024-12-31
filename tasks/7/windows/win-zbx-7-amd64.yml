@@ -11,9 +11,9 @@
 #
 - name: "Set facts for Zabbix agent version that can be found in defaults/main.yml or overwritten in your playbook"
   ansible.builtin.set_fact:
-    zbx_agt_win_src                 : '{{ zbx_agt_win_src_7 }}'
-    zbx_agt_win_checksum            : '{{ zbx_agt_win_checksum_7 }}'
-    zbx_agt_win_checksum_algorithem : '{{ zbx_agt_win_checksum_algorithem_7 }}'
+    zbx_agt_win_src                 : '{{ item.windows_source }}'
+    zbx_agt_win_checksum            : '{{ item.windows_checksum }}'
+    zbx_agt_win_checksum_algorithem : '{{ item.windows_checksum_algorithem }}'
 
 - name: "Set variable 'zbx_agt_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
   ansible.builtin.set_fact:
