@@ -9,13 +9,13 @@
 # Description:
 #   Playbook for deploying Zabbix Agent
 #
-- name: "Set facts for Zabbix agent version that can be found in defaults/main.yml or overwritten in your playbook"
-  ansible.builtin.set_fact:
-    zbx_agt_win_version             : '{{ item.version }}'
-    zbx_agt_win_src                 : '{{ item.windows_source }}'
-    zbx_agt_win_checksum            : '{{ item.windows_checksum }}'
-    zbx_agt_win_checksum_algorithem : '{{ item.windows_checksum_algorithem }}'
-  when: zabbix_install_version == item.version
+#- name: "Set facts for Zabbix agent version that can be found in defaults/main.yml or overwritten in your playbook"
+#  ansible.builtin.set_fact:
+#    zbx_agt_win_version             : '{{ item.version }}'
+#    zbx_agt_win_src                 : '{{ item.windows_source }}'
+#    zbx_agt_win_checksum            : '{{ item.windows_checksum }}'
+#    zbx_agt_win_checksum_algorithem : '{{ item.windows_checksum_algorithem }}'
+#  when: zabbix_install_version == item.version
 
 - name: "Set variable 'zbx_agt_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
   ansible.builtin.set_fact:
