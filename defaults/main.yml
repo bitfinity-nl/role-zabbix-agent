@@ -31,21 +31,21 @@ zbx_active_server         : '{{ global_zabbix_active_server }}'
 # -- Zabbix Agent Ubuntu - zabbix_agent.conf.j2 --
 #
 # Variable(s):
-#   zbx_agt_LogFileSize            : '5'                       # Maximum size of log file in MB.
-#   zbx_agt_Server                 : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers.
-#   zbx_agt_ServerActive           : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers. 
-#   zbx_agt_Hostname               : '{{ ansible_hostname }}'  # Set hostname.
-#   zbx_agt_EnableRemoteCommands   : '1'                       # Used for sending remote commands.
-#   zbx_agt_LogRemoteCommands      : '0'                       # Used for loging remote commands.
-#   zbx_agt_HostMetadata           : 'Server'                  # Used for autoregistration. 
+#   zabbix_agent_LogFileSize            : '5'                       # Maximum size of log file in MB.
+#   zabbix_agent_Server                 : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers.
+#   zabbix_agent_ServerActive           : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers. 
+#   zabbix_agent_Hostname               : '{{ ansible_hostname }}'  # Set hostname.
+#   zabbix_agent_EnableRemoteCommands   : '1'                       # Used for sending remote commands.
+#   zabbix_agent_LogRemoteCommands      : '0'                       # Used for loging remote commands.
+#   zabbix_agent_HostMetadata           : 'Server'                  # Used for autoregistration. 
 #
-zbx_agt_LogFileSize           : '5'
-zbx_agt_Server                : '{{ global_zabbix_server }}'
-zbx_agt_ServerActive          : '{{ global_zabbix_active_server }}'
-zbx_agt_Hostname              : '{{ ansible_hostname }}'
-zbx_agt_EnableRemoteCommands  : '1'
-zbx_agt_LogRemoteCommands     : '0'
-zbx_agt_HostMetadata          : ''
+zabbix_agent_LogFileSize           : '5'
+zabbix_agent_Server                : '{{ global_zabbix_server }}'
+zabbix_agent_ServerActive          : '{{ global_zabbix_active_server }}'
+zabbix_agent_Hostname              : '{{ ansible_hostname }}'
+zabbix_agent_EnableRemoteCommands  : '1'
+zabbix_agent_LogRemoteCommands     : '0'
+zabbix_agent_HostMetadata          : ''
 
 
 # -- Zabbix Agent Windows - specific settings (Zip version)--
