@@ -1,4 +1,4 @@
-# role-zabbix-agent
+# Zabbix agent
 Zabbix Agent, The Enterprise-Class Open Source Network Monitoring Agent.
 
 
