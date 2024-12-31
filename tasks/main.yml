@@ -10,6 +10,7 @@
 # -- Zabbix Agent 7.xx LTS --
 - name: "Install Zabbix Agent 7.xx LTS (Ubuntu 24.04LTS) on host '{{ ansible_hostname }}'"
   include_tasks: tasks/ubuntu/zabbix-agent-install-ubuntu.yml
+  with_items: "{{ zabbix_agent }}"
   when: ansible_distribution == "Ubuntu"
 #    - ansible_distribution_version == "24.04"
 #    - ansible_architecture == "x86_64"
