@@ -1,14 +1,16 @@
 ---
-# Title: role-zabbix-agent
+# Title: Defaults for Zabbix agent.
 #
 # Author: bitfinity-nl
+# Owner: bitfinity-nl
+#
 # File: defaults/main.yml
 #
 # Description:
-#   Playbook for deploying Zabbix Agents.
-#
+#   This default/main.yml file contains the default settings for
+#   Zabbix agent, these setting can be overridden in playbooks.
 
-# -- Zabbix server - General settings -- 
+# -- Zabbix - General settings -- 
 #
 # Variable(s):
 #   zbx_state: 'install'  # Set status of Zabbix Agent (install, reinstall).   
