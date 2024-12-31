@@ -26,9 +26,9 @@
 
 - name: "Configure Zabbix agent {{ item.version }} on host '{{ ansible_hostname }}'"
   ansible.builtin.template:
-    src:  templates/ubuntu/zabbix_agent.confd.j2
+    src:  templates/ubuntu/zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
-    backup: yes
+    backup: true
   notify:
     - restart_zabbix_agent
 
