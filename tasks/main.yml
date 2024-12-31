@@ -9,11 +9,11 @@
 #
 - name: "Install Zabbix Agent when operating system is Ubuntu on host '{{ ansible_hostname }}'"
   include_tasks: tasks/ubuntu/zabbix-agent-install-ubuntu.yml
-  with_items: "{{ zabbix_agent }}"
+  with_items: "{{ zabbix_repository }}"
   when: ansible_distribution == "Ubuntu"
 
 - name: "Install Zabbix Agent when operating system is Windows on host '{{ ansible_hostname }}'"
   include_tasks: tasks/windows/zabbix-agent-version.yml
-  with_items: "{{ zabbix_agent }}"
+  with_items: "{{ zabbix_repository }}"
   when:
     - ansible_os_family == "Windows"
