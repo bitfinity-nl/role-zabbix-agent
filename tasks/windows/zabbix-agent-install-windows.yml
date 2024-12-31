@@ -9,26 +9,26 @@
 # Description:
 #   Taskfile for installing Zabbix Agent on a Windows.
 #
-- name: "Set variable 'zbx_agt_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
+- name: "Set variable 'zabbix_agent_HostMetadata' to 'Microsoft,Windows' for autoregistration when is empty on host for auto registration '{{ ansible_hostname }}'"
   ansible.builtin.set_fact:
-    zbx_agt_HostMetadata: "Microsoft,Windows"
+    zabbix_agent_HostMetadata: "Microsoft,Windows"
   when:
-    - zbx_agt_HostMetadata|length > 0
+    - zabbix_agent_HostMetadata|length > 0
     
-- name: "Check if Zabbix {{ zbx_agt_win_version }} service is installed on host '{{ ansible_hostname }}'"
+- name: "Check if Zabbix {{ zabbix_agent_win_version }} service is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_service:
     name: Zabbix Agent
   register: zbx_result
   ignore_errors: True
 
-- name: "Stop service Zabbix agent {{ zbx_agt_win_version }} when exist and is installed on host '{{ ansible_hostname }}'"
+- name: "Stop service Zabbix agent {{ zabbix_agent_win_version }} when exist and is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_service:
     name: Zabbix Agent
     start_mode: disabled
     state: stopped
   when: zbx_result.exists == True and zabbix_state == 'install'
     
-- name: "Uninstall Zabbix agent {{ zbx_agt_win_version }} when exist and is installed on host '{{ ansible_hostname }}'"
+- name: "Uninstall Zabbix agent {{ zabbix_agent_win_version }} when exist and is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_command: C:\Zabbix\bin\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.conf --uninstall
   when: zbx_result.exists == True and zabbix_state == 'install'
     
@@ -44,12 +44,12 @@
     state: directory
   when: zbx_result.exists == False or zabbix_state == 'install'
   
-- name: "Download Zabbix Agent {{ zbx_agt_win_version }} (Zip version) from url '{{ zbx_agt_win_src }}' to dest '{{ zabbix_package_local_repository }}\\zabbix-agent.zip' on host '{{ ansible_hostname }}'"
+- name: "Download Zabbix Agent {{ zabbix_agent_win_version }} (Zip version) from url '{{ zabbix_agent_win_src }}' to dest '{{ zabbix_package_local_repository }}\\zabbix-agent.zip' on host '{{ ansible_hostname }}'"
   ansible.windows.win_get_url:
-    url: "{{ zbx_agt_win_src }}"
+    url: "{{ zabbix_agent_win_src }}"
     dest: "{{ zabbix_package_local_repository }}\\zabbix-agent.zip"
-    checksum: "{{ zbx_agt_win_checksum }}"
-    checksum_algorithm: "{{ zbx_agt_win_checksum_algorithem }}"
+    checksum: "{{ zabbix_agent_win_checksum }}"
+    checksum_algorithm: "{{ zabbix_agent_win_checksum_algorithem }}"
   when: zbx_result.exists == False or zabbix_state == 'install'
   
 - name: "Unpack {{ zabbix_package_local_repository }}\\zabbix-agent.zip to 'C:\\Zabbix\\' on host '{{ ansible_hostname }}'"
