@@ -4,7 +4,7 @@
 # Author: bitfinity-nl
 # Owner: bitfinity-nl
 #
-# File: tasks/7/windows/win-zbx-7-amd64.yml
+# File: tasks/windows/win-zbx-amd64.yml
 #
 # Description:
 #   Playbook for deploying Zabbix Agent
