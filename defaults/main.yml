@@ -11,28 +11,28 @@
 # -- Zabbix server - General settings -- 
 #
 # Variable(s):
-#   zbx_state                 : 'install'  # Set status of Zabbix Agent (install, reinstall).   
+#   zbx_state: 'install'  # Set status of Zabbix Agent (install, reinstall).   
 #
 zabbix_state                     : 'install'
 
 # -- Zabbix agent settings (zabbix_agent.conf.j2) --
 #
 # Variable(s):
-#   zabbix_agent_LogFileSize            : '5'                       # Maximum size of log file in MB.
-#   zabbix_agent_Server                 : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers.
-#   zabbix_agent_ServerActive           : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers. 
-#   zabbix_agent_Hostname               : '{{ ansible_hostname }}'  # Set hostname.
-#   zabbix_agent_EnableRemoteCommands   : '1'                       # Used for sending remote commands.
-#   zabbix_agent_LogRemoteCommands      : '0'                       # Used for loging remote commands.
-#   zabbix_agent_HostMetadata           : 'Server'                  # Used for autoregistration. 
+#   zabbix_agent_LogFileSize          : '5'                       # Maximum size of log file in MB.
+#   zabbix_agent_Server               : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers.
+#   zabbix_agent_ServerActive         : '127.0.0.1'               # Set IP or hostname of Zabbix (proxy) servers. 
+#   zabbix_agent_Hostname             : '{{ ansible_hostname }}'  # Set hostname.
+#   zabbix_agent_EnableRemoteCommands : '1'                       # Used for sending remote commands.
+#   zabbix_agent_LogRemoteCommands    : '0'                       # Used for loging remote commands.
+#   zabbix_agent_HostMetadata         : 'Server'                  # Used for autoregistration. 
 #
-zabbix_agent_LogFileSize           : '5'
-zabbix_agent_Server                : '{{ global_zabbix_server }}'
-zabbix_agent_ServerActive          : '{{ global_zabbix_active_server }}'
-zabbix_agent_Hostname              : '{{ ansible_hostname }}'
-zabbix_agent_EnableRemoteCommands  : '1'
-zabbix_agent_LogRemoteCommands     : '0'
-zabbix_agent_HostMetadata          : ''
+zabbix_agent_LogFileSize          : '5'
+zabbix_agent_Server               : '{{ global_zabbix_server }}'
+zabbix_agent_ServerActive         : '{{ global_zabbix_active_server }}'
+zabbix_agent_Hostname             : '{{ ansible_hostname }}'
+zabbix_agent_EnableRemoteCommands : '1'
+zabbix_agent_LogRemoteCommands    : '0'
+zabbix_agent_HostMetadata         : ''
 
 
 # -- Zabbix repository settings --
