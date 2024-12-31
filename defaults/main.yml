@@ -11,24 +11,11 @@
 # -- Zabbix server - General settings -- 
 #
 # Variable(s):
-#   zbx_version               : '6'                                                                                                         # Set the Zabbix version you will be using.
-#   zbx_state                 : 'install'                                                                                                   # Set status of Zabbix Agent (install, reinstall).
-#   zbx_repository            : 'https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-3+bionic_all.deb'  # Set Url to Zabbix repository 
-#   zbx_timezone              : 'Europe/Amsterdam'                                                                                          # Set Timezone.
-#   zbx_servername            : '{{ ansible_hostname }}'                                                                                    # Set servername of the installation.
-#   zbx_server                : '{{ def_zbx_server }}'                                                                                      # Set IP or hostname of the Zabbix server.
-#   zbx_active_server         : '{{ def_zbx_active_server }}'                                                                               # Set IP or hostname of the Zabbix Active server.
+#   zbx_state                 : 'install'  # Set status of Zabbix Agent (install, reinstall).   
 #
-zbx_version               : '7'
-zbx_state                 : 'install'
+zabbix_state                     : 'install'
 
-zbx_timezone              : 'Europe/Amsterdam' 
-zbx_servername            : '{{ ansible_hostname }}'
-zbx_server                : '{{ global_zabbix_server }}'
-zbx_active_server         : '{{ global_zabbix_active_server }}'
-
-
-# -- Zabbix Agent Ubuntu - zabbix_agent.conf.j2 --
+# -- Zabbix agent settings (zabbix_agent.conf.j2) --
 #
 # Variable(s):
 #   zabbix_agent_LogFileSize            : '5'                       # Maximum size of log file in MB.
@@ -48,7 +35,7 @@ zabbix_agent_LogRemoteCommands     : '0'
 zabbix_agent_HostMetadata          : ''
 
 
-# -- Zabbix Agent Windows - specific settings (Zip version)--
+# -- Zabbix repository settings --
 # 
 # Variable(s):
 #   zabbix_package_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\cached\\zabbix-agent'                                                                                   # Zabbix local temporary package repository for installation (Windows only).
