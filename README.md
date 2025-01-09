@@ -27,5 +27,10 @@ rm /usr/share/doc/zabbix-release -r
 rm /var/lib/systemd/deb-systemd-helper-masked/zabbix-agent.service
 ```
 
+```
+dpkg --force-remove-reinstreq --remove <package_name here>
+apt-update apt purge
+```
+
 # Source(s)
 - https://www.zabbix.com/
