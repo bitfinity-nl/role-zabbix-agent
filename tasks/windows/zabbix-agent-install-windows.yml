@@ -21,6 +21,10 @@
   register: zbx_result
   ignore_errors: True
 
+- name: "Print result if zabbix agent is installed on host '{{ ansible_hostname }}'"
+  debug:
+    msg: "{{ zbx_result }}"
+    
 - name: "Stop service Zabbix agent {{ zabbix_agent_win_version }} when exist and is installed on host '{{ ansible_hostname }}'"
   ansible.windows.win_service:
     name: Zabbix Agent
