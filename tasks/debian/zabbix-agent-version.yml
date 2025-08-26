@@ -1,0 +1,31 @@
+---
+# Title: Zabbix agent version
+#
+# Author: bitfinity-nl
+# Owner: bitfinity-nl
+#
+#  File: tasks/debian/zabbix-agent-version.yml
+#
+#  Description:
+#    This task file wil determine which version   
+#    of the Zabbix agent wil be installed.
+#  
+- name: "Create Ansible directory structure for Zabbix tools on host '{{ ansible_hostname }}'"
+  ansible.builtin.file:
+    path: /opt/ansible/zabbix/tools
+    state: directory
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: "Transfer Zabbix tools to directory '/opt/ansible/zabbix/tools/' on host '{{ ansible_hostname }}'"
+  ansible.builtin.template:
+    src:  templates/debian/reset-zabbix-repository.sh.j2
+    dest: /opt/ansible/zabbix/tools/reset-zabbix-repository.sh
+    owner: root
+    group: root
+    mode: '0700'
+    
+- name: "Install Zabbix Agent when the install version '{{ zabbix_install_version }}' is equal to the profile version '{{ item.version }}' on host '{{ ansible_hostname }}'"
+  include_tasks: tasks/debian/zabbix-agent-install-debian.yml
+  when: zabbix_install_version == item.version
