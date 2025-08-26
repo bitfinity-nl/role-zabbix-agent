@@ -17,7 +17,7 @@
 - name: "Install Zabbix Agent when operating system is Debian on host '{{ ansible_hostname }}'"
   include_tasks: tasks/debian/zabbix-agent-version.yml
   with_items: "{{ zabbix_repository }}"
-  when: ansible_distribution == "debian"
+  when: ansible_distribution == "Debian"
 
 - name: "Install Zabbix Agent when operating system is Windows on host '{{ ansible_hostname }}'"
   include_tasks: tasks/windows/zabbix-agent-version.yml
