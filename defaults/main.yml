@@ -58,12 +58,14 @@ zabbix_package_local_repository   : '{{ ansible_env.ALLUSERSPROFILE }}\\ansible\
 zabbix_install_version            : '7'
 zabbix_repository:
   - { version                     : '7',
+      debian_source               : 'https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.0+debian12_all.deb',
       ubuntu_source               : 'https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu{{ ansible_distribution_version }}_all.deb',
       windows_source              : 'https://cdn.zabbix.com/zabbix/binaries/stable/7.0/7.0.7/zabbix_agent-7.0.7-windows-amd64-openssl.zip',
       windows_checksum            : '4c25a60baa970703cad6c30820613671',
       windows_checksum_algorithem : 'md5'
       }
   - { version                     : '6',
+      debian_source               : '',  
       ubuntu_source               : 'https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_6.0+ubuntu{{ ansible_distribution_version }}_all.deb',
       windows_source              : 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.36/zabbix_agent-6.0.36-windows-amd64-openssl.zip',
       windows_checksum            : 'b227b2678161e795e62edf968638334e',
