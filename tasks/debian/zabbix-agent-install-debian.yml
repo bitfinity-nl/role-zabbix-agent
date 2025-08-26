@@ -1,0 +1,50 @@
+---
+# Title: Zabbix agent install debian
+#
+# Author: bitfinity-nl
+# Owner: bitfinity-nl
+#
+# File: tasks/debian/zabbix-agent-install-debian.yml
+#
+# Description:
+#   Taskfile for deploying Zabbix Agent on debian.
+#
+- name: "Download & Install Zabbix {{ item.version }} deb package from '{{ item.debian_source }}' on host '{{ ansible_hostname }}'"
+  ansible.builtin.apt:
+    deb: "{{ item.debian_source }}"
+    state: present
+
+- name: "Update & Upgrade APT repositories on host '{{ ansible_hostname }}'"
+  ansible.builtin.apt:
+    upgrade: dist
+    
+- name: "Install Zabbix agent {{ item.version }} on host '{{ ansible_hostname }}'"
+  ansible.builtin.apt:
+    name: zabbix-agent
+    state: present
+    update_cache: yes
+
+- name: "Configure Zabbix agent {{ item.version }} on host '{{ ansible_hostname }}'"
+  ansible.builtin.template:
+    src:  templates/debian/zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    backup: true
+  notify:
+    - restart_zabbix_agent
+
+- name: "Enable Zabbix agent {{ item.version }} on startup on host '{{ ansible_hostname }}'"
+  ansible.builtin.systemd:
+    name: zabbix-agent
+    state: started
+    enabled: yes
+    masked: no
+
+- name: "Allow traffic from Zabbix server to Zabbix Agent (Passive on port 10050/tcp) on host '{{ ansible_hostname }}'"
+  community.general.ufw:
+    rule: allow
+    port: "{{ ufw.port }}"
+    proto: "{{ ufw.proto }}"
+  loop:
+    - { port: '10050', proto: 'tcp', desc: 'Allow traffic from Zabbix server to Zabbix Agent (Passive) on port 10050/tcp' }
+  loop_control:
+    loop_var: ufw
