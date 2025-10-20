@@ -52,8 +52,8 @@
   ansible.windows.win_get_url:
     url: "{{ zabbix_agent_win_src }}"
     dest: "{{ zabbix_package_local_repository }}\\zabbix-agent.zip"
-    checksum: "{{ zabbix_agent_win_checksum }}"
-    checksum_algorithm: "{{ zabbix_agent_win_checksum_algorithem }}"
+    #checksum: "{{ zabbix_agent_win_checksum }}"
+    #checksum_algorithm: "{{ zabbix_agent_win_checksum_algorithem }}"
   when: zbx_result.exists == False or zabbix_state == 'install'
   
 - name: "Unpack {{ zabbix_package_local_repository }}\\zabbix-agent.zip to 'C:\\Zabbix\\' on host '{{ ansible_hostname }}'"
